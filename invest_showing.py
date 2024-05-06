@@ -11,10 +11,43 @@ class invest:
 class invest_policy:
     def __init__(self, invest_policy_name):
         self.invest_policy_name = invest_policy_name
-        self.bonds = 0
-        self.stocks = 0
-        self.cash = 0
-        
+        self.total_bonds = 0
+        self.israeli_bonds = 0
+        self.american_bonds = 0
+        self.european_bonds = 0
+        self.foreign_bonds = 0
+        self.total_stocks = 0
+        self.israeli_stocks = 0
+        self.american_stocks = 0
+        self.european_stocks = 0
+        self.foreign_stocks = 0
+        self.total_cash = 0
+        self.total_real_estate = 0
+        self.total_alternative = 0
+        self.money_fund = 0
+        self.gold = 0
+        self.foreign_exchange = 0
+        self.crypto = 0
+
+        def add_invest_type(self, invest_type, invest_percent):
+            if invest_type == "Bonds":
+                self.total_bonds = invest_percent
+            elif invest_type == "Stocks":
+                self.total_stocks = invest_percent
+            elif invest_type == "Cash":
+                self.total_cash = invest_percent
+            elif invest_type == "Real Estate":
+                self.total_real_estate = invest_percent
+            elif invest_type == "Alternative":
+                self.total_alternative = invest_percent
+            elif invest_type == "Money Fund":
+                self.money_fund = invest_percent
+            elif invest_type == "Gold":
+                self.gold = invest_percent
+            elif invest_type == "Foreign Exchange":
+                self.foreign_exchange = invest_percent
+            elif invest_type == "Crypto":
+                self.crypto = invest_percent
         
 class portfolio:
     def __init__(self, investor, invest_policy):
@@ -41,6 +74,9 @@ class portfolio:
                 i.invest_amount = invest_amount
                 self.invest_total += invest_amount
                 return
+            
+    def build_portfolio_from_user(self):
+        investor = input("Enter investor name: ")
 
     def __str__(self):
         return (self.investor, self.invest_policy, self.invest_list, self.invest_total)       
