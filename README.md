@@ -26,8 +26,3 @@ This program allows users to manage their investment portfolios by adding, delet
 - Python 3.x
 - matplotlib library (install via `pip install matplotlib`)
 
-## Contributions
-Contributions to enhance features, fix bugs, or improve documentation are welcome! Please submit a pull request with your changes.
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
