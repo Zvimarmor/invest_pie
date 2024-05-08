@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import random
+import investment_policies
 from investment_policies import investment_policies
 
 class invest:
@@ -58,11 +59,18 @@ class portfolio:
             print("Invest URL: ", i.invest_url)
             print("\n")
 
+    def build_portfolio_from_invest_policy(self):
+        for i in investment_policies[self.invest_policy].invests_dict:
+            if investment_policies[self.invest_policy].invests_dict[i] != 0:
+                self.add_invest(i, i, investment_policies[self.invest_policy].invests_dict[i], "")
+        return
+    
     def pie_chart(self):
         labels = []
         sizes = []
         colors = []
 
+        plt.title(self.investor + " account number: " + str(self.account_number))
         for i in self.invest_list:
             labels.append(i.invest_name)
             sizes.append(i.invest_amount)
@@ -72,22 +80,32 @@ class portfolio:
         plt.axis('equal') 
         plt.show()
 
-def build_portfolio_from_user(self):
+def build_portfolio_from_user():
     investor = input("Enter investor name: ")
-    invest_policy = input("Enter investment policy: ")
-    if invest_policy not in investment_policies:
-        print("Invalid investment policy")
-        return
+    while True:
+        user_input = input("Do you want to see the investment policies? (y/n): ")
+        if user_input not in ["y", "n", "Y", "N"]:
+            print("Invalid input")
+            continue
+        if user_input == "y" or user_input == "Y":
+            print("Investment Policies: ")
+            for i in investment_policies:
+                print(i)
+        invest_policy = input("Enter investment policy: ")
+        if invest_policy in investment_policies:
+            break
+        else:
+            print("Invalid investment policy")
+    
     account_number = random.randint(1000, 9999) # Generate random account number between 1000 and 9999
     my_portfolio = portfolio(investor, invest_policy, account_number)
     print ("your account number is: ", account_number)
     return my_portfolio
-
         
 def main():
     my_portfolio = build_portfolio_from_user()
-    my_portfolio.add_invest("Vanguard Total Bond Market Index Fund", "Bonds", 10000, "https://investor.vanguard.com/mutual-funds/profile/VBMFX")
-    my_portfolio.add_invest("Vanguard Total Stock Market Index Fund", "Stocks", 20000, "https://investor.vanguard.com/mutual-funds/profile/VTSAX")
-    my_portfolio.add_invest("Vanguard Total International Stock Index Fund", "Stocks", 30000, "https://investor.vanguard.com/mutual-funds/profile/VTIAX")
-    my_portfolio.show_portfolio()
     my_portfolio.pie_chart()
+
+
+if __name__ == "__main__":
+    main()

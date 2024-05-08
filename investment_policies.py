@@ -3,45 +3,14 @@
 class invest_policy:
     def __init__(self, invest_policy_name):
         self.invest_policy_name = invest_policy_name
-        self.total_bonds = 0
-        self.total_stocks = 0
-        self.Dividend_stocks = 0
-        self.growth_stocks = 0
-        self.total_cash = 0
-        self.total_real_estate = 0
-        self.total_alternative = 0
-        self.money_fund = 0
-        self.gold = 0
-        self.foreign_exchange = 0
-        self.crypto = 0
+        invests_type = ["Bonds", "Dividend Stocks", "Growth Stocks", "Stocks", "Cash", "Real Estate", "Alternative", "Money Fund", "Gold", "Foreign Exchange", "Crypto"]
+        self.invests_dict = {keys: 0 for keys in invests_type}
 
     def add_invest_type(self, invest_type, invest_percent):
-        if invest_type == "Bonds":
-            self.total_bonds = invest_percent
-        if invest_type == "Dividend Stocks":
-            self.Dividend_stocks = invest_percent
-            self.total_stocks += invest_percent
-        elif invest_type == "Growth Stocks":
-            self.growth_stocks = invest_percent
-            self.total_stocks += invest_percent
-        elif invest_type == "Stocks":
-            self.total_stocks = invest_percent
-        elif invest_type == "Cash":
-            self.total_cash = invest_percent
-        elif invest_type == "Real Estate":
-            self.total_real_estate = invest_percent
-        elif invest_type == "Alternative":
-            self.total_alternative = invest_percent
-        elif invest_type == "Money Fund":
-            self.money_fund = invest_percent
-        elif invest_type == "Gold":
-            self.gold = invest_percent
-        elif invest_type == "Foreign Exchange":
-            self.foreign_exchange = invest_percent
-        elif invest_type == "Crypto":
-            self.crypto = invest_percent
+        if invest_type in self.invests_dict:
+            self.invests_dict[invest_type] = invest_percent
         else:
-            print("Invalid invest type")
+            print("Investment type not found")
         return  
     
 
