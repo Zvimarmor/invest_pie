@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import random
-import investment_policies
+from investment_policies import build_new_investment_policy
 from investment_policies import investment_policies
 
 class invest:
@@ -60,8 +60,8 @@ class portfolio:
             print("\n")
 
     def build_portfolio_from_invest_policy(self):
-        for i in investment_policies[self.invest_policy].invests_dict:
-            if investment_policies[self.invest_policy].invests_dict[i] != 0:
+        for i in self.invest_policy.invests_dict:
+            if self.invest_policy.invests_dict[i] != 0:
                 self.add_invest(i, i, investment_policies[self.invest_policy].invests_dict[i], "")
         return
     
@@ -91,17 +91,24 @@ def build_portfolio_from_user():
             print("Investment Policies: ")
             for i in investment_policies:
                 print(i)
-        invest_policy = input("Enter investment policy: ")
-        if invest_policy in investment_policies:
+        invest_policy_name = input("Enter investment policy: ")
+        if invest_policy_name == "Other" or invest_policy_name == "other":
+            invest_policy_name = (investor + "'s policy")
+            invest_policy = build_new_investment_policy(invest_policy_name)
+            investment_policies[invest_policy_name] = invest_policy
+            break
+        if invest_policy_name in investment_policies:
+            invest_policy = investment_policies[invest_policy_name]
             break
         else:
             print("Invalid investment policy")
-    
+
     account_number = random.randint(1000, 9999) # Generate random account number between 1000 and 9999
     my_portfolio = portfolio(investor, invest_policy, account_number)
     my_portfolio.build_portfolio_from_invest_policy()
     print ("your account number is: ", account_number)
     return my_portfolio
+
         
 def main():
     my_portfolio = build_portfolio_from_user()
