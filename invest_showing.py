@@ -99,6 +99,7 @@ def build_portfolio_from_user():
     
     account_number = random.randint(1000, 9999) # Generate random account number between 1000 and 9999
     my_portfolio = portfolio(investor, invest_policy, account_number)
+    my_portfolio.build_portfolio_from_invest_policy()
     print ("your account number is: ", account_number)
     return my_portfolio
         
