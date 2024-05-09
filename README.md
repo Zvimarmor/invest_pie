@@ -1,28 +1,69 @@
-# Portfolio Management Program
+# Investment Portfolio Visualization Tool
 
-This program allows users to manage their investment portfolios by adding, deleting, and updating investments, as well as visualizing their portfolio composition through a pie chart.
+## Overview
+
+This program allows users to visualize their investment portfolios as pie charts based on predefined or custom investment policies. Users can input their investor name and select an investment policy from a list of predefined policies or create a custom one. The program then generates a pie chart displaying the distribution of investments in the portfolio according to the selected policy.
 
 ## Features
-- Add investments with details such as name, category, amount, and URL.
-- Delete investments by name.
-- Update investment amounts.
-- Display the portfolio's total value and individual investment details.
-- Visualize the portfolio composition as a pie chart.
 
-## How to Use
-1. Run the program by executing `main()` in a Python environment.
-2. Enter the investor's name and investment policy.
-3. Choose from predefined investment policies or define a custom one.
-4. Add investments by providing their name, category, amount, and URL.
-5. View, update, or delete investments as needed.
-6. See the overall portfolio details and visualize its composition as a pie chart.
+- **Predefined Investment Policies**: The program offers a set of predefined investment policies, such as Conservative, Moderate, Aggressive, Income, Growth, and more.
+  
+- **Custom Investment Policies**: Users can create custom investment policies by specifying the percentage allocation for various investment types, including Bonds, Stocks, Real Estate, Cash, and others.
 
-## File Structure
-- `portfolio_management.py`: Contains the main program code.
-- `investment_policies.py`: Defines a dictionary of predefined investment policies.
-- `README.md`: This file, providing an overview of the program.
+- **Investment Portfolio Management**: Users can add, delete, or modify investments in their portfolios based on their preferences.
 
-## Requirements
-- Python 3.x
-- matplotlib library (install via `pip install matplotlib`)
+- **Pie Chart Visualization**: The program generates a pie chart visualization that illustrates the distribution of investments in the portfolio according to the selected investment policy.
 
+## Usage
+
+### 1. Installation
+
+- Ensure that Python is installed on your system. You can download Python from the official [Python website](https://www.python.org/).
+
+- Clone or download the project repository to your local machine.
+
+### 2. Running the Program
+
+- Open a terminal or command prompt.
+
+- Navigate to the directory where the program files are located.
+
+- Run the `invest_showing.py` file using the following command:
+  
+  ```
+  python invest_showing.py
+  ```
+
+### 3. Input Investor Details and Policy Selection
+
+- Enter your investor name when prompted.
+
+- Choose whether you want to view the available investment policies by typing 'y' or 'n'.
+
+- If you choose to view the available policies, a list of predefined investment policies will be displayed. Select one of the policies or enter 'Other' to create a custom policy.
+
+- If you create a custom policy, you will be prompted to specify the percentage allocation for each investment type.
+
+### 4. Viewing the Pie Chart
+
+- After selecting the investment policy, the program will generate a pie chart displaying the distribution of investments in your portfolio.
+
+- The pie chart title will include your investor name and account number, along with the selected investment policy.
+
+- The slices of the pie chart represent different investment types, and the percentage allocation for each type is displayed on the chart.
+
+### 5. Managing Your Portfolio
+
+- You can manage your investment portfolio by adding, deleting, or modifying investments based on your preferences.
+
+- Follow the prompts to add, delete, or modify investments as needed.
+
+- After making changes to your portfolio, the program will automatically update the pie chart to reflect the changes.
+
+## Dependencies
+
+- This program relies on the matplotlib library for generating pie chart visualizations. Ensure that matplotlib is installed on your system. You can install it using pip:
+
+  ```
+  pip install matplotlib
+  ```
