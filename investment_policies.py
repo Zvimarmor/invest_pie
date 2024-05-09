@@ -1,11 +1,13 @@
-# Description: This file contains the investment policies for the investment portfolio.
+# This file contains definitions of various investment policies for an investment portfolio.
 
+# Define a class to represent an investment policy
 class invest_policy:
     def __init__(self, invest_policy_name):
         self.invest_policy_name = invest_policy_name
         invests_type = ["Bonds", "Dividend Stocks", "Growth Stocks", "Stocks", "Cash", "Real Estate", "Alternative", "Money Fund", "Gold", "Foreign Exchange", "Crypto"]
         self.invests_dict = {keys: 0 for keys in invests_type}
 
+    # Method to add or update the percentage of a specific investment type
     def add_invest_type(self, invest_type, invest_percent):
         if invest_type in self.invests_dict:
             self.invests_dict[invest_type] = invest_percent
@@ -13,30 +15,32 @@ class invest_policy:
             print("Investment type not found")
         return  
     
+# Function to build a new investment policy
 def build_new_investment_policy(invest_policy_name):
-        new_investment_policy = invest_policy(invest_policy_name)
-        total_percent = 0
-        for i in new_investment_policy.invests_dict:
-            while True:
-                user_input = input("type number of wanted percentage for " + i + " or enter to keep the same percentage: ")
-                if not user_input.isdigit() and user_input != "":
-                    print("Invalid input")
+    new_investment_policy = invest_policy(invest_policy_name)
+    total_percent = 0
+    for i in new_investment_policy.invests_dict:
+        while True:
+            user_input = input("type number of wanted percentage for " + i + " or enter to keep the same percentage: ")
+            if not user_input.isdigit() and user_input != "":
+                print("Invalid input")
+                return
+            if user_input == "":
+                user_input = 0
+            user_input = float(user_input)
+            if user_input >= 0:
+                new_investment_policy.add_invest_type(i, float(user_input))
+                total_percent += float(user_input)
+                if total_percent > 100:
+                    print("Total percentage exceeds 100, please try running the program again")
                     return
-                if user_input == "":
-                    user_input = 0
-                user_input = float(user_input)
-                if user_input >= 0:
-                    new_investment_policy.add_invest_type(i, float(user_input))
-                    if total_percent + float(user_input) > 100:
-                        print("Total percentage exceeds 100, please try run the program again")
-                        return
-                    total_percent += float(user_input)
-                    break
-        return new_investment_policy
+                break
+    return new_investment_policy
 
-    
-
+# Dictionary to store predefined investment policies
 investment_policies = {}
+
+# Define and instantiate predefined investment policies
 Conservative_policy = invest_policy("Conservative")
 Conservative_policy.add_invest_type("Bonds", 70)
 Conservative_policy.add_invest_type("Stocks", 20)
