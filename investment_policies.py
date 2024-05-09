@@ -18,11 +18,14 @@ def build_new_investment_policy(invest_policy_name):
         total_percent = 0
         for i in new_investment_policy.invests_dict:
             while True:
-                user_input = input("type number of wanted percentage for " + i + " or '0' to keep the same percentage: ")
-                if not user_input.isdigit():
+                user_input = input("type number of wanted percentage for " + i + " or enter to keep the same percentage: ")
+                if not user_input.isdigit() and user_input != "":
                     print("Invalid input")
                     return
-                if user_input >= "0":
+                if user_input == "":
+                    user_input = 0
+                user_input = float(user_input)
+                if user_input >= 0:
                     new_investment_policy.add_invest_type(i, float(user_input))
                     if total_percent + float(user_input) > 100:
                         print("Total percentage exceeds 100, please try run the program again")

@@ -10,7 +10,6 @@ class invest:
         self.invest_amount = invest_amount
         self.invest_url = invest_url
 
-        
 class portfolio:
     def __init__(self, investor, invest_policy, account_number):
         self.investor = investor
@@ -60,17 +59,21 @@ class portfolio:
             print("\n")
 
     def build_portfolio_from_invest_policy(self):
-        for i in self.invest_policy.invests_dict:
-            if self.invest_policy.invests_dict[i] != 0:
-                self.add_invest(i, i, investment_policies[self.invest_policy].invests_dict[i], "")
+        for invest_name, invest_amount in self.invest_policy.invests_dict.items():
+            if invest_amount != 0:
+                self.add_invest(invest_name, invest_name, invest_amount, "")
         return
+
+        
+        
     
     def pie_chart(self):
         labels = []
         sizes = []
         colors = []
 
-        plt.title(self.investor + " account number: " + str(self.account_number))
+        plt.suptitle(self.investor + "'s Portofolio. Account Number: " + str(self.account_number), fontsize=14)
+        plt.title("Investment policy: " + self.invest_policy.invest_policy_name, fontsize=10)
         for i in self.invest_list:
             labels.append(i.invest_name)
             sizes.append(i.invest_amount)
