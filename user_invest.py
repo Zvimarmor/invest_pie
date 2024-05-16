@@ -17,10 +17,21 @@ class user:
         user_counter += 1
         self.portfolio = portfolio(self.name, self.investment_policy, self.account_number)
 
+def fix_portofolio_by_policy(self):
+    """
+    Fixes the portfolio by the investment policy.
+    """
+    answer = []
+    for i in self.portfolio.invest_list:
+        if i.invest_category not in self.investment_policy.invests_dict:
+            answer.append(i.invest_category)
+        #elif i.invest_category in self.investment_policy.invests_dict and i.invest_category not in answer:
 
 
-    
-if __name__ == "__main__":
+def main():
+    """
+    Main function to run the program.
+    """
     user_counter = 0
     user_name = input("Enter your name: ")
     print("Available investment policies are: ")
@@ -31,4 +42,8 @@ if __name__ == "__main__":
         print("Investment policy not found")
         exit()
     user = user(user_name, investment_policies[user_investment_policy], user_counter)
-    print("Welcome " + user.name + "! Your account number is: " + str(user.account_number))
+
+    
+if __name__ == "__main__":
+    main()
+    
