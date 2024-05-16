@@ -25,7 +25,8 @@ def fix_portofolio_by_policy(self):
     for i in self.portfolio.invest_list:
         if i.invest_category not in self.investment_policy.invests_dict:
             answer.append(i.invest_category)
-        #elif i.invest_category in self.investment_policy.invests_dict and i.invest_category not in answer:
+        #add a function to fix the portfolio by the investment policy
+    return answer
 
 
 def main():
