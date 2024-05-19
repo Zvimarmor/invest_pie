@@ -18,17 +18,25 @@ class user:
         self.investment_policy = investment_policy
         self.account_number = USER_COUNTER
         self.portfolio = portfolio(self.name, self.investment_policy, self.account_number)
+        print("The invest types in the investment policy are: ")
+        self.investment_policy.print_all_invest_types()
 
-def fix_portfolio_by_policy(self):
-    """
-    Fixes the portfolio by the investment policy.
-    """
-    answer = []
-    for i in self.portfolio.invest_list:
-        if i.invest_category not in self.investment_policy.invests_dict:
-            answer.append(i.invest_category)
-        #add a function to fix the portfolio by the investment policy blah
-    return answer
+        for invest in self.investment_policy.invests_dict:
+            if self.investment_policy.invests_dict[invest] != 0:
+                print("Enter the amount you want to invest in", invest)
+                invest_amount = float(input())
+                self.portfolio.add_invest(invest, invest, invest_amount, "")
+
+    def fix_portfolio_by_policy(self):
+        """
+        Fixes the portfolio by the investment policy.
+        """
+        answer = []
+        for invest in self.portfolio.invest_list:
+            invest_differece = invest.invest_amount/self.portfolio.invest_total * 100 - self.investment_policy.invests_dict[invest.invest_name]
+            if invest_differece != 0:
+                answer.append((invest.invest_name, invest_differece * self.portfolio.invest_total / 100))
+        return answer
 
 
 def main():
@@ -49,6 +57,14 @@ def main():
     current_user = user(user_name, investment_policies[user_investment_policy])
     print("Your account number is: ", current_user.account_number)
     print("Your investment policy is: ", current_user.investment_policy)
+    things_to_change = current_user.fix_portfolio_by_policy()
+    if things_to_change:
+        print("You need to change the following investments: ")
+        for i in things_to_change:
+            print(i[0], "by", i[1])
+    else:
+        print("Your portfolio is perfect")
+
     
 if __name__ == "__main__":
     while True:

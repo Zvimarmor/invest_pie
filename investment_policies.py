@@ -15,6 +15,11 @@ class invest_policy:
             print("Investment type not found")
         return  
     
+    def print_all_invest_types(self):
+        for i in self.invests_dict:
+            if self.invests_dict[i] != 0:
+                print(i, self.invests_dict[i])
+    
 # Function to build a new investment policy
 def build_new_investment_policy(invest_policy_name):
     new_investment_policy = invest_policy(invest_policy_name)
