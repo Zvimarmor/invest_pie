@@ -129,11 +129,9 @@ def build_portfolio_from_policy():
     """
     investor = input("Enter investor name: ")
     while True:
-        user_input = input("Do you want to see the investment policies? (y/n): ")
-        if user_input not in ["y", "n", "Y", "N"]:
-            print("Invalid input")
-            continue
-        if user_input == "y" or user_input == "Y":
+        user_input = input("Do you want to see the investment policies? (yes/no): ")
+        user_input = user_input.lower()
+        if user_input == "yes":
             print("Investment Policies: ")
             for i in investment_policies:
                 print(i)
