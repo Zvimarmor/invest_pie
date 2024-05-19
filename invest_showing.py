@@ -10,13 +10,12 @@ from investment_policies import investment_policies
 # Define a class to represent an individual investment
 class invest:
     """
-    Represents an individual investment with its name, category, amount, and URL.
+    Represents an individual investment with its name, category and amount.
     """
-    def __init__(self, invest_name, invest_category, invest_amount, invest_url):
+    def __init__(self, invest_name, invest_category, invest_amount):
         self.invest_name = invest_name
         self.invest_category = invest_category
         self.invest_amount = invest_amount
-        self.invest_url = invest_url
 
 # Define a class to represent an investment portfolio
 class portfolio:
@@ -33,11 +32,11 @@ class portfolio:
         self.invest_list = []
         self.invest_total = 0
     
-    def add_invest(self, invest_name, invest_category, invest_amount, invest_url):
+    def add_invest(self, invest_name, invest_category, invest_amount):
         """
         Adds a new investment to the portfolio.
         """
-        self.invest_list.append(invest(invest_name, invest_category, invest_amount, invest_url))
+        self.invest_list.append(invest(invest_name, invest_category, invest_amount))
         self.invest_total += invest_amount
 
     def delete_invest(self, invest_name):
@@ -100,7 +99,7 @@ class portfolio:
         """
         for invest_name, invest_amount in self.invest_policy.invests_dict.items():
             if invest_amount != 0:
-                self.add_invest(invest_name, invest_name, invest_amount, "")
+                self.add_invest(invest_name, invest_name, invest_amount)
         return
 
     def pie_chart(self):
@@ -120,10 +119,11 @@ class portfolio:
         plt.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%')
 
         plt.axis('equal') 
-        plt.show()
+        plt.show(block=False)
+        return
 
 # Function to build a portfolio based on user input
-def build_portfolio_from_user():
+def build_portfolio_from_policy():
     """
     Builds a portfolio based on user input regarding investor name and investment policy.
     """
@@ -149,18 +149,17 @@ def build_portfolio_from_user():
         else:
             print("Invalid investment policy")
 
-    account_number = random.randint(1000, 9999) # Generate random account number between 1000 and 9999
-    my_portfolio = portfolio(investor, invest_policy, account_number)
+    my_portfolio = portfolio(investor, invest_policy, account_number = 0)
     my_portfolio.build_portfolio_from_invest_policy()
-    print ("your account number is: ", account_number)
     return my_portfolio
+
 
 # Main function to run the program
 def main():
     """
     Main function to execute the program.
     """
-    my_portfolio = build_portfolio_from_user()
+    my_portfolio = build_portfolio_from_policy()
     my_portfolio.pie_chart()
 
 

@@ -16,9 +16,9 @@ class invest_policy:
         return  
     
     def print_all_invest_types(self):
-        for i in self.invests_dict:
-            if self.invests_dict[i] != 0:
-                print(i, self.invests_dict[i])
+        for invest in self.invests_dict:
+            if self.invests_dict[invest] != 0:
+                print(invest, ": ", self.invests_dict[invest])
     
 # Function to build a new investment policy
 def build_new_investment_policy(invest_policy_name):
