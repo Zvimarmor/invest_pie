@@ -1,14 +1,18 @@
 # This file contains definitions of various investment policies for an investment portfolio.
 
-# Define a class to represent an investment policy
 class invest_policy:
+    """
+    Represents an investment policy with its name and investment types.
+    """
     def __init__(self, invest_policy_name):
         self.invest_policy_name = invest_policy_name
         invests_type = ["Bonds", "Dividend Stocks", "Growth Stocks", "Stocks", "Cash", "Real Estate", "Alternative", "Money Fund", "Gold", "Foreign Exchange", "Crypto"]
         self.invests_dict = {keys: 0 for keys in invests_type}
 
-    # Method to add or update the percentage of a specific investment type
     def add_invest_type(self, invest_type, invest_percent):
+        """
+        Adds a new investment type to the policy.
+        """
         if invest_type in self.invests_dict:
             self.invests_dict[invest_type] = invest_percent
         else:
@@ -20,13 +24,17 @@ class invest_policy:
             if self.invests_dict[invest] != 0:
                 print(invest, ": ", self.invests_dict[invest])
     
-# Function to build a new investment policy
 def build_new_investment_policy(invest_policy_name):
+    """
+    Builds a new investment policy based on user input.
+    """
     new_investment_policy = invest_policy(invest_policy_name)
     total_percent = 0
+    total_invest_types = len(new_investment_policy.invests_dict) + 1 #+1 because in every iteration minus 1 from total_invest_types is occuring
     for i in new_investment_policy.invests_dict:
         while True:
-            user_input = input("type number of wanted percentage for " + i + " or enter to keep the same. Total percentage left: " + str(100 - total_percent) + ": ")
+            total_invest_types -= 1
+            user_input = input("type number of wanted percentage for " + i + " or enter to keep the same. \n Total percentage left: " + str(100 - total_percent) + " Total investment types left: " + str(total_invest_types)+ " : \n")
             if not user_input.isdigit() and user_input != "":
                 print("Invalid input")
                 return

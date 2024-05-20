@@ -7,7 +7,6 @@ import random
 from investment_policies import build_new_investment_policy
 from investment_policies import investment_policies
 
-# Define a class to represent an individual investment
 class invest:
     """
     Represents an individual investment with its name, category and amount.
@@ -17,7 +16,6 @@ class invest:
         self.invest_category = invest_category
         self.invest_amount = invest_amount
 
-# Define a class to represent an investment portfolio
 class portfolio:
     """
     Represents an investment portfolio for a specific investor.
@@ -122,10 +120,9 @@ class portfolio:
         plt.show(block=False)
         return
 
-# Function to build a portfolio based on user input
 def build_portfolio_from_policy():
     """
-    Builds a portfolio based on user input regarding investor name and investment policy.
+    Builds a portfolio based on user input regarding investment policy choice.
     """
     investor = input("Enter investor name: ")
     while True:
@@ -135,8 +132,10 @@ def build_portfolio_from_policy():
             print("Investment Policies: ")
             for i in investment_policies:
                 print(i)
+            print("other - to create a new investment policy")
         invest_policy_name = input("Enter investment policy: ")
-        if invest_policy_name == "Other" or invest_policy_name == "other":
+        invest_policy_name = invest_policy_name.lower()
+        if invest_policy_name == "other":
             invest_policy_name = (investor + "'s policy")
             invest_policy = build_new_investment_policy(invest_policy_name)
             investment_policies[invest_policy_name] = invest_policy
@@ -151,15 +150,12 @@ def build_portfolio_from_policy():
     my_portfolio.build_portfolio_from_invest_policy()
     return my_portfolio
 
-
-# Main function to run the program
 def main():
     """
     Main function to execute the program.
     """
     my_portfolio = build_portfolio_from_policy()
     my_portfolio.pie_chart()
-
 
 if __name__ == "__main__":
     main()

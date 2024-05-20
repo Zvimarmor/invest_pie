@@ -24,6 +24,7 @@ class user:
             print("Available investment policies are: ")
             for i in investment_policies:
                 print(i)
+            print("other - to create a new investment policy")
 
         #initialize the user with their investment policy
         user_invest_request = input("Enter the name of the investment policy you want to use: ")
