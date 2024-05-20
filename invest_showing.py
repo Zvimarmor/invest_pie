@@ -117,7 +117,7 @@ class portfolio:
         plt.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%')
 
         plt.axis('equal') 
-        plt.show(block=False)
+        plt.show(block=False) #make the program keep running after showing the chart
         return
 
 def build_portfolio_from_policy():
